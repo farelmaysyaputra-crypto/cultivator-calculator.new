@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultivator Tools</title>
+    <link rel="icon" type="image/jpeg" href="Logo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+       
+            <div class="brand-text">
+                <span class="brand">CULTIVATOR CALCULATOR</span>
+                <span class="sub-brand">By xioo/farel</span>
+            </div>
+        </div>
+        <div class="menu-dropdown">
+            <button class="dropbtn">MENU ☰</button>
+            <div class="dropdown-content">
+                <a href="#" onclick="showSection('wings')">Wings Coefficient</a>
+                <a href="#" onclick="showSection('absorb')">Absorb Calculator</a>
+                <a href="#" onclick="showSection('elixir1')">Elixir Accumulator</a>
+                <a href="#" onclick="showSection('elixir2')">Elixir Optimizer</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="wings" class="tool-section fade-in">
+            <h2 class="section-title">Wings Coefficient</h2>
+            <div class="tool-card">
+                <div class="input-side">
+                    <div class="input-field">
+                        <label>Current Percent</label>
+                        <input type="number" id="wings-percent" step="any" placeholder="0.00">
+                    </div>
+                    <div class="input-field">
+                        <label>Wing Level</label>
+                        <input type="number" id="wings-level" placeholder="1">
+                    </div>
+                    <div class="input-field">
+                        <label>Wing Rarity</label>
+                        <select id="wings-rarity">
+                            <option value="6">Scarce</option><option value="7">Epic</option>
+                            <option value="8">Legend</option><option value="9">Immortal</option>
+                            <option value="10">Mythic</option><option value="11">Eternal</option>
+                            <option value="12">Celestial</option><option value="13">Primordial</option>
+                            <option value="14">Transcendant</option>
+                        </select>
+                    </div>
+                    <button class="btn-main" onclick="calculateWings()">CALCULATE</button>
+                </div>
+                <div class="result-side glass-effect">
+                    <span class="res-label">Wings Coefficient</span>
+                    <h1 id="res-wings" class="glow-text">0,0000</h1>
+                </div>
+            </div>
+        </section>
+
+        <section id="absorb" class="tool-section fade-in" style="display:none;">
+            <h2 class="section-title">Absorb Calculator</h2>
+            <div class="tool-card">
+                <div class="input-side">
+                    <label>Elixir Type</label>
+                    <select id="abs-type" onchange="togglePercent()">
+                        <option value="HP">HP</option><option value="Attack">Attack</option>
+                        <option value="Critical Damage">Critical Damage</option>
+                        <option value="Talisman Damage">Talisman Damage</option>
+                        <option value="Skill Damage">Skill Damage</option>
+                    </select>
+                    <label>Absorbed <span id="abs-sym1" class="sym"></span></label>
+                    <div class="flex-row">
+                        <input type="number" id="abs-val" placeholder="0">
+                        <select id="abs-unit" class="unit-select"></select>
+                    </div>
+                    <label>Max Absorb <span id="abs-sym2" class="sym"></span></label>
+                    <div class="flex-row">
+                        <input type="number" id="abs-max" placeholder="0">
+                        <select id="abs-max-unit" class="unit-select"></select>
+                    </div>
+                    <button class="btn-main" onclick="calculateAbsorb()">CALCULATE ABSORB</button>
+                </div>
+                <div class="result-side glass-effect">
+                    <span class="res-label">Required Materials</span>
+                    <h2 id="res-abs" class="glow-text">0 PTS</h2>
+                </div>
+            </div>
+        </section>
+
+        <section id="elixir1" class="tool-section fade-in" style="display:none;">
+            <h2 class="section-title">Elixir Accumulator</h2>
+            <div class="tool-card">
+                <div class="input-side">
+                    <label>Elixir Type</label>
+                    <select id="e1-type">
+                        <option value="HP">HP</option><option value="Attack">Attack</option>
+                        <option value="Critical Damage">Critical Damage</option>
+                        <option value="Talisman Damage">Talisman Damage</option>
+                        <option value="Skill Damage">Skill Damage</option>
+                    </select>
+                    <div id="e1-inputs" class="stock-scroll"></div>
+                    <div class="btn-group">
+                        <button class="btn-main" onclick="addE1History()">ADD TO LIST</button>
+                        <button class="btn-reset" onclick="resetE1()">RESET ALL</button>
+                    </div>
+                </div>
+                <div class="result-side hist-side">
+                    <span class="res-label">Calculation History</span>
+                    <div id="e1-history" class="history-box"></div>
+                    <div id="e1-total" class="total-display">Grand Total: 0 PTS</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="elixir2" class="tool-section fade-in" style="display:none;">
+            <h2 class="section-title">Elixir Optimizer</h2>
+            <div class="tool-card">
+                <div class="input-side">
+                    <div class="flex-row">
+                        <div style="flex:1">
+                            <label>Priority</label>
+                            <select id="c2-prior"></select>
+                        </div>
+                        <div style="flex:1">
+                            <label>Direction</label>
+                            <select id="c2-dir">
+                                <option value="Up">Up</option>
+                                <option value="Down">Down</option>
+                                <option value="-">-</option>
+                            </select>
+                        </div>
+                    </div>
+                    <label>Target PTS</label>
+                    <div class="flex-row">
+                        <input type="number" id="c2-target" placeholder="Target">
+                        <select id="c2-t-unit" class="unit-select"></select>
+                    </div>
+                    <div id="c2-stock-inputs" class="stock-scroll"></div>
+                    <button class="btn-main" onclick="calculateOptimizer()">OPTIMIZE</button>
+                </div>
+                <div class="result-side hist-side">
+                    <span class="res-label">Required Items</span>
+                    <div id="c2-res-list" class="history-box"></div>
+                    <div id="c2-status" class="status-badge">Status: Ready</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="farel.js"></script>
+</body>
+</html>
