@@ -4,11 +4,11 @@
     --card: #0b1120;
     --input: #111827;
     --text: #f8fafc;
-    --dim: #94a3b8;
-    --border: #1f2937;
+    --dim: #f1f2f4;
+    --border: #fbfcfd;
 }
 
-/* RESET */
+
 * {
     margin: 0;
     padding: 0;
@@ -21,7 +21,7 @@ body {
     color: var(--text);
 }
 
-/* NAVBAR */
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -55,7 +55,7 @@ body {
     color: var(--dim);
 }
 
-/* DROPDOWN */
+
 .menu-dropdown {
     position: relative;
 }
@@ -95,7 +95,7 @@ body {
     display: block;
 }
 
-/* CONTAINER */
+
 .container {
     display: flex;
     justify-content: center;
@@ -103,7 +103,7 @@ body {
     padding: 40px 20px;
 }
 
-/* SECTION */
+
 .tool-section {
     width: 100%;
     max-width: 500px;
@@ -115,7 +115,7 @@ body {
     letter-spacing: 2px;
 }
 
-/* CARD */
+
 .tool-card {
     background: var(--card);
     border-radius: 20px;
@@ -127,7 +127,7 @@ body {
     gap: 20px;
 }
 
-/* RESULT */
+
 .result-side {
     text-align: center;
     padding: 20px;
@@ -142,7 +142,7 @@ body {
     margin-top: 10px;
 }
 
-/* INPUT */
+
 .input-side {
     display: flex;
     flex-direction: column;
@@ -168,7 +168,7 @@ input:focus, select:focus {
     outline: none;
 }
 
-/* BUTTON */
+
 .btn-main {
     margin-top: 10px;
     padding: 14px;
@@ -185,7 +185,7 @@ input:focus, select:focus {
     transform: translateY(-2px);
 }
 
-/* FLEX ROW */
+
 .flex-row {
     display: flex;
     gap: 10px;
@@ -195,7 +195,7 @@ input:focus, select:focus {
     width: 90px;
 }
 
-/* HISTORY */
+
 .history-box {
     background: var(--input);
     padding: 12px;
@@ -204,7 +204,7 @@ input:focus, select:focus {
     overflow-y: auto;
 }
 
-/* MOBILE */
+
 @media (max-width: 500px) {
     .container {
         padding: 20px;
@@ -212,5 +212,21 @@ input:focus, select:focus {
 
     .glow-text {
         font-size: 2rem;
-    }
+    } }
+.btn-reset {
+    margin-top: 10px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid var(--border); 
+    background: #272727;            
+    color: white;                  
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+    width: 100%;                   
+}
+.btn-reset:hover {
+    background: #ff4d4d;           
+    border-color: #ff4d4d;
+    transform: translateY(-2px);   
 }
